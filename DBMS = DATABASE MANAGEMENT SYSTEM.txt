@@ -1,0 +1,315 @@
+DBMS => DATABASE MANAGEMENT SYSTEM
+
+===========================================
+
+DBMS = ?
+
+A software which is used to manage data in a database
+
+
+Database = ?
+A Database is a collection of organized data that allows easy access, management, and updating.
+
+
+
+Difference between relational DB(SQL) and NoSQL
+
+SQL=> Structured Query Language
+NoSQL => No Structured Query Language
+
+JSON => JavaScript Object Notation
+
+| Concept         | SQL (Relational DB) | NoSQL (e.g., MongoDB)  |
+| --------------- | ------------------- | ---------------------- |
+| Data Storage    | **Tables**          | **Collections**        |
+| A single record | **Row / Tuple**     | **Document (JSON)**    |
+| Column          | **Attribute**       | **Field / Key**        |
+| Query Language  | SQL                 | MongoDB Query Language |
+
+
+Difference between file system and dbms
+
+
+| 🔹 Feature                | 🗂️ File System                 | 🗄️ DBMS (Database Management System)                   |
+| ------------------------- | ------------------------------- | ------------------------------------------------------- |
+| **Basics**                | Arranges files in storage       | Software to manage databases                            |
+| **Data Redundancy**       | High — duplicate data can exist | Low — redundancy is minimized                           |
+| **Backup & Recovery**     | No in-built backup or recovery  | Has built-in tools for backup and recovery              |
+| **Query Processing**      | No efficient query mechanism    | Efficient query processing using SQL                    |
+| **Complexity**            | Simple to use and implement     | More complex due to advanced features                   |
+| **Security**              | Less secure                     | High security (user roles, access control, etc.)        |
+| **Cost**                  | Less expensive                  | More costly due to tools and support                    |
+| **Data Independence**     | Not supported                   | Supported (Logical & Physical Data Independence)        |
+| **Data Abstraction**      | Shows how data is stored        | Hides storage details from users                        |
+| **Integrity Constraints** | Difficult to enforce            | Easy to define and enforce (e.g., primary/foreign keys) |
+
+
+
+Applications of DBMS
+====================
+Banking and Finance Sector,University,Airlines,Sales, accounting, human resources, Manufacturing, online retailers.,Telecommunication (post,pre-paid bill maintenance)
+
+
+Types of DBMS => Hierarchial, Network, Relational, NoSQL, Object-oriented 
+
+
+| Type               | Structure         | Example        | Key Feature                 |
+| ------------------ | ----------------- | -------------- | --------------------------- |
+| Hierarchical       | Tree              | IBM IMS        | Parent-child relationship   |
+| Network            | Graph             | IDMS           | Multiple parent-child links |
+| Relational (RDBMS) | Table (Row/Col)   | MySQL, Oracle  | SQL-based, normalized data  |
+| Object-Oriented    | Objects           | db4o, ObjectDB | Integrates OOP with DB      |
+| NoSQL              | Varies (JSON, KV) | MongoDB, Redis | Schema-less, scalable       |
+
+
+
+Advantages,Disadvantages of DBMS
+
+| 🟢 **Advantages**                      | 🔴 **Disadvantages**                     |
+| --------------------------------------- | ---------------------------------------- |
+| Removes duplicate data                  | Setup is costly                          |
+| Keeps data accurate and consistent      | Needs skilled people to manage           |
+| Recovers data if lost                   | Slower for small tasks                   |
+| Gives better data security              | Complex to design and maintain           |
+| Many users can access at once           | Can face locking or deadlock issues      |
+| Easy to search and update data          | Needs a lot of memory and storage        |
+| Allows safe data sharing                | More rules mean more planning            |
+| Changes in storage don’t break programs | Harder for beginners to understand fully |
+
+
+=========================================================================
+Database terminologies =>  Data, Information, Metadata, Schema, Instance
+=========================================================================
+
+| 🔹 Term         | 📝 Short Definition     | 🧾 Example                    |
+| --------------- | ------------------------ | ----------------------------- |
+| **Data**        | Raw facts                | `21`, `Sarvani`               |
+| **Information** | Meaningful data          | "Sarvani is 21 years old"     |
+| **Metadata**    | Info about data format   | "Age is number, Name is text" |
+| **Schema**      | Table structure/design   | `Students(ID, Name, Age)`     |
+| **Instance**    | Actual data in the table | `(101, Sarvani, 21)`          |
+
+
+Table => Schema + Instance
+
+================================
+Tables, Tuples, Attributes, Keys
+================================
+
+
+Tables:
+A table is a collection of related data in an organized manner in the form of rows and columns. It is an organized arrangement of data and information in tabular form containing rows and columns, making it easier to understand and compare data.
+
+
+Tuple:
+A tuple, also known as a record or row, is a basic unit of data in a relational database management system (DBMS). A tuple represents a single instance of a relation, or table, in the database. Each tuple contains a set of values, or attributes, that correspond to the columns, or fields, of the relation. 
+
+
+
+Attributes:
+
+| 🔹 Attribute Type   | 📝 Meaning (Short)               | 🧾 Student Example                         |
+| ---------------------|----------------------------------|---------------------------- |
+| **1. Simple**        | Cannot be split further          | `Age = 21`                                 |
+| **2. Composite**     | Can be divided into sub-parts    | `Name = {FirstName: Sarvani, LastName: R}` |
+| **3. Single Valued** | Has only one value               | `Email = sarvani@example.com`              |
+| **4. Multivalued**   | Has multiple values              | `Phone Numbers = {9876, 9988}`             |
+| **5. Key**           | Uniquely identifies the student  | `StudentID = 101`                          |
+| **6. Derived**       | Calculated from stored data      | `Age` from `Date of Birth = 2003-06-10`    |
+| **7. Stored**        | Directly saved in database       | `Date of Birth = 2003-06-10`               |
+| **8. Complex**       | Composite + Multivalued together | `Address = {Flat No, Street, Cities}`      |
+
+
+
+Keys:
+
+🔑 Types of Keys in DBMS (with Student Example)
+1. Primary Key => UNIQUE KEY + NOT NULL
+Definition: A column (or group of columns) that uniquely identifies each record in a table.
+
+Rule: Cannot be null, cannot have duplicates.
+
+Student Example:
+StudentID — Every student has a unique ID.
+
+sql
+PRIMARY KEY → StudentID
+
+2. Candidate Key
+Definition: All possible columns that can be a primary key (i.e., unique and not null).
+
+Student Example:
+StudentID
+AadharNumber
+Both can uniquely identify a student → both are candidate keys.
+
+We choose one as the primary key.
+
+3. Super Key
+Definition: A column or a group of columns that uniquely identifies a row.
+
+Includes candidate keys and extra attributes.
+
+Student Example:
+StudentID
+StudentID + Name → still unique (extra info = super key)
+
+4. Foreign Key
+Definition: A column that refers to the primary key of another table.
+
+Used to connect tables.
+
+Student Example:
+In a Marks table: StudentID is a foreign key from the Students table.
+
+sql
+FOREIGN KEY → StudentID (in Marks table) → refers to Students(StudentID)
+
+5. Alternate Key
+Definition: A candidate key that is not chosen as the primary key.
+
+Student Example:
+Candidate Keys: StudentID, AadharNumber
+
+If StudentID is Primary → AadharNumber becomes Alternate Key
+
+6. Composite Key
+Definition: A key made of 2 or more columns together that uniquely identify a row.
+
+Student Example:
+
+In a CourseRegistration table, you might use:
+
+sql
+Composite Key = {StudentID, CourseID}
+A student can register for many courses, but the combination is unique.
+
+7. Unique Key
+Definition: Like primary key but allows one null value.
+
+Student Example:
+Email should be unique for every student, but one student might not provide it.
+
+sql
+UNIQUE → Email
+
+
+
+Student Table Example 
+
+📘 Student Table 
+StudentID	Email	AadharNumber	Phone	Name	CourseID
+101	sarvani@gmail.com	1234-5678-9012	9876543210	Sarvani	CSE101
+102	rahul@gmail.com	2234-5678-9012	9123456789	Rahul	CSE102
+103	anita@gmail.com	3234-5678-9012	9988776655	Anita	CSE101
+
+
+| 🔹 Key Type        | ✅ Example                            | 📘 Short Explanation                          |
+| ------------------ | ------------------------------------ | --------------------------------------------- |
+| **Primary Key**    | `{StudentID}`                        | Uniquely identifies each student              |
+| **Candidate Keys** | `{StudentID}`, `{Email}`, `{Aadhar}` | All are unique, any can be primary            |
+| **Alternate Keys** | `{Email}`, `{Aadhar}`                | Not chosen as primary from candidate keys     |
+| **Super Keys**     | `{StudentID}`, `{StudentID, Name}`   | Unique keys + extra columns                   |
+| **Composite Key**  | `{StudentID, CourseID}`              | Combined key for unique pair in another table |
+| **Unique Key**     | `{Email}`, `{Phone}`                 | Unique values, allows one null                |
+| **Foreign Key**    | `{CourseID}`                         | Links to another table (Courses)              |
+
+
+
+What is Data Independence in DBMS?
+Data independence is a property of a database management system by which we can change the database schema at one level of the database system without changing the database schema at the next higher level.
+
+
+Types of Data Independence => Logical,Physical
+
+=========================
+Logical Data Independence
+=========================
+Changing the logical schema (conceptual level) without changing the external schema (view level) is called logical data independence.
+It is used to keep the external schema separate from the logical schema.
+
+For example, it is possible to add or delete new entities, attributes to the conceptual schema without making any changes to the external schema.
+
+
+
+==========================
+Physical Data Independence
+==========================
+
+Making changes to the physical schema without changing the logical schema is called physical data independence.
+If we change the storage size of the database system server, it will not affect the conceptual structure of the database.
+Example – Changing the location of the database from C drive to D drive.
+
+
+
+What is DBMS architecture?
+
+DBMS architecture is the design structure that defines how data is stored, managed, and accessed in a database system. It organizes the database into layers or tiers to ensure efficient data processing, better scalability, and easier management.
+
+| Architecture | Layers            | Example                                       |
+| ------------ | ----------------- | --------------------------------------------- |
+| **1-Tier**   | All-in-one        | MS Access, Excel with DB                      |
+| **2-Tier**   | Client + DB       | Desktop app talking to DB directly            |
+| **3-Tier**   | Client + App + DB | Web app (React) → Backend (Node) → DB (MySQL) |
+
+
+
+What is tier 1 and tier 2 and tier 3 architecture?
+Tier 1 (Single-Tier Architecture): The database and application are on the same system.
+Tier 2 (Two-Tier Architecture): The application and database are separate, directly connected via a network.
+Tier 3 (Three-Tier Architecture): Divides into three parts: user interface, logic and database, all working together.
+
+
+
+What are the levels of DBMS?
+
+The levels of DBMS are Internal Level, Conceptual level, External Level
+
+Internal Level: Deals with how data is physically stored in the database.
+Conceptual Level: Focuses on the structure of the entire database and how data is organized.
+External Level: Shows the database to users in a way that suits their needs, such as views or reports.
+
+
+Architecture:
+
+
+| Architecture | Layers            | Example                                       |
+| ------------ | ----------------- | --------------------------------------------- |
+| **1-Tier**   | All-in-one        | MS Access, Excel with DB                      |
+| **2-Tier**   | Client + DB       | Desktop app talking to DB directly            |
+| **3-Tier**   | Client + App + DB | Web app (React) → Backend (Node) → DB (MySQL) |
+
+
+===================
+1-tier architecture
+===================
+| 🔹 Tier          | 💡 What Happens                                                                 |
+| ---------------- | ------------------------------------------------------------------- |
+| **Single Layer** | Everything runs on the same machine — the application, interface, and `                                                                                  database. |
+
+
+===================
+2-tier architecture
+===================
+
+| 🔹 Tier           | 💡 What Happens                     |
+| ----------------- | ----------------------------------- |
+| **Client Tier**   | Student app sends request to server |
+| **Database Tier** | Server responds with data           
+
+
+===================
+3-tier architecture
+===================
+| 🔹 Tier              | 💡 What Happens                       |
+| -------------------- | ------------------------------------- |
+| **Client Tier**      | Student uses a browser/app (frontend) |
+| **Application Tier** | Handles logic (backend server/API)    |
+| **Database Tier**    | Stores actual data                    |
+
+
+
+
+
+
+
