@@ -61,7 +61,7 @@ Types of DBMS => Hierarchial, Network, Relational, NoSQL, Object-oriented
 | Object-Oriented    | Objects           | db4o, ObjectDB | Integrates OOP with DB      |
 | NoSQL              | Varies (JSON, KV) | MongoDB, Redis | Schema-less, scalable       |
 
-
+Normalisation:This process involves breaking down large tables into smaller, well-structured ones and defining relationships between them. This reduces the chance of storing the duplicate data and improves the efficiency of database.
 
 Advantages,Disadvantages of DBMS
 
@@ -283,7 +283,7 @@ Architecture:
 ===================
 1-tier architecture
 ===================
-| 🔹 Tier          | 💡 What Happens                                                                 |
+| 🔹 Tier          | 💡 What Happens                                                    |
 | ---------------- | ------------------------------------------------------------------- |
 | **Single Layer** | Everything runs on the same machine — the application, interface, and `                                                                                  database. |
 
@@ -292,7 +292,7 @@ Architecture:
 2-tier architecture
 ===================
 
-| 🔹 Tier           | 💡 What Happens                     |
+| 🔹 Tier           | 💡 What Happens                    |
 | ----------------- | ----------------------------------- |
 | **Client Tier**   | Student app sends request to server |
 | **Database Tier** | Server responds with data           
@@ -301,12 +301,254 @@ Architecture:
 ===================
 3-tier architecture
 ===================
-| 🔹 Tier              | 💡 What Happens                       |
+| 🔹 Tier              | 💡 What Happens                      |
 | -------------------- | ------------------------------------- |
 | **Client Tier**      | Student uses a browser/app (frontend) |
 | **Application Tier** | Handles logic (backend server/API)    |
 | **Database Tier**    | Stores actual data                    |
 
+
+
+
+ER- ENTITY RELATIONSHIP MODEL :
+The Entity-Relationship Model (ER Model) is a conceptual model for designing a databases. This model represents the logical structure of a database, including entities, their attributes and relationships between them.
+
+ENTITY
+RELATIONSHIP
+ATTRIBUTE
+
+Entity: An objects that is stored as data such as Student, Course or Company.
+Attribute: Properties that describes an entity such as StudentID, CourseName, or EmployeeEmail.
+Relationship: A connection between entities such as "a Student enrolls in a Course".
+
+
+Entity Set:
+An entity refers to an individual object of an entity type, and the collection of all entities of a particular type is called an entity set. 
+
+Two types of Entity = > Strong entity  , Weak Entity
+
+
+Strong entity: A Strong Entity is a type of entity that has a key Attribute that can uniquely identify each instance of the entity. A Strong Entity does not depend on any other Entity in the Schema for its identification. It has a primary key that ensures its uniqueness and is represented by a rectangle in an ER diagram.
+
+
+Weak entity: 
+A Weak Entity cannot be uniquely identified by its own attributes alone. It depends on a strong entity to be identified. A weak entity is associated with an identifying entity (strong entity), which helps in its identification. A weak entity are represented by a double rectangle. The participation of weak entity types is always total. The relationship between the weak entity type and its identifying strong entity type is called identifying relationship and it is represented by a double diamond.
+
+
+
+Degree of relationship set: The number of different entity sets participating in a relationship set is called the degree of a relationship set.
+
+1. Unary Relationship: When there is only ONE entity set participating in a relation, the relationship is called a unary relationship. For example, one person is married to only one person.
+
+2. Binary Relationship: When there are TWO entities set participating in a relationship, the relationship is called a binary relationship. For example, a Student is enrolled in a Course.
+
+3. Ternary Relationship: When there are three entity sets participating in a relationship, the relationship is called a ternary relationship.
+
+
+Cardinality in ER Model:The maximum number of times an entity of an entity set participates in a relationship set is known as cardinality.
+
+Cardinality can be of different types:
+1. One-to-One
+When each entity in each entity set can take part only once in the relationship, the cardinality is one-to-one. Let us assume that a male can marry one female and a female can marry one male. So the relationship will be one-to-one.
+
+2. One-to-Many
+In one-to-many mapping as well where each entity can be related to more than one entity. Let us assume that one surgeon department can accommodate many doctors. So the Cardinality will be 1 to M. It means one department has many Doctors.
+
+3. Many-to-One
+When entities in one entity set can take part only once in the relationship set and entities in other entity sets can take part more than once in the relationship set, cardinality is many to one.
+
+Let us assume that a student can take only one course but one course can be taken by many students. So the cardinality will be n to 1. It means that for one course there can be n students but for one student, there will be only one course.
+
+
+4. Many-to-Many
+When entities in all entity sets can take part more than once in the relationship cardinality is many to many. Let us assume that a student can take more than one course and one course can be taken by many students. So the relationship will be many to many.
+
+
+Participation Constraint: Participation Constraint is applied to the entity participating in the relationship set.
+
+1. Total Participation: Each entity in the entity set must participate in the relationship. If each student must enroll in a course, the participation of students will be total. Total participation is shown by a double line in the ER diagram.
+
+2. Partial Participation: The entity in the entity set may or may NOT participate in the relationship. If some courses are not enrolled by any of the students, the participation in the course will be partial.
+
+
+
+
+
+Partial Dependency : A partial dependency occurs when: A non-key attribute depends on part of a composite primary key, not the whole key.
+
+
+Functional Dependency: A functional dependency (FD) exists when the value of one attribute uniquely determines the value of another attribute.
+Notation:
+If A → B, it means:
+If you know A, you can uniquely determine B.
+✅ Example:
+| StudentID | Name  |
+| --------- | ----- |
+| 1         | Alice |
+| 2         | Bob   |
+
+StudentID → Name
+➡ Because for each unique StudentID, there is only one Name.
+
+
+🔹 Transitive Dependency: A transitive dependency exists when:
+A → B and B → C
+Then A → C is a transitive dependency.
+
+In a table:
+A non-key attribute depends on another non-key attribute, which depends on the primary key.
+
+❌ Example of Transitive Dependency (Violates 3NF):
+| EmpID | DeptID | DeptName |
+| ----- | ------ | -------- |
+| 101   | D1     | Sales    |
+FDs:
+
+EmpID → DeptID (EmpID is primary key)
+
+DeptID → DeptName
+So: EmpID → DeptName ⛔ (Transitive dependency)
+
+✅ Fix it (Normalize to 3NF):
+
+Employee table:
+| EmpID | DeptID |
+| ----- | ------ |
+| 101   | D1     |
+
+Department table:
+| DeptID | DeptName |
+| ------ | -------- |
+| D1     | Sales    |
+
+Now,there's no transitive dependency
+
+| Concept               | Definition                                                        | Example                   |
+| --------------------- | ----------------------------------------------------------------- | ------------------------- |
+| Functional Dependency | Attribute A determines B (A → B)                                  | StudentID → Name          |
+| Transitive Dependency | A → B and B → C, then A → C (indirect dependency through another) | EmpID → DeptID → DeptName |
+
+
+🔸 1st Normal Form (1NF)
+📘 Definition:
+A table is in 1NF if:
+All attributes contain only atomic (indivisible) values
+There are no repeating groups or arrays
+
+✅ 1NF - Satisfied Example:
+| StudentID | Name  | Course  |
+| --------- | ----- | ------- |
+| 1         | Alice | Math    |
+| 2         | Bob   | English |
+
+❌ 1NF - Violation Example: ➡ Violation Reason: "Courses" contains multiple values (not atomic)
+| StudentID | Name  | Courses          |
+| --------- | ----- | ---------------- |
+| 1         | Alice | Math, Science    |
+| 2         | Bob   | English, History |
+
+
+🔸 2nd Normal Form (2NF)
+📘 Definition:
+A table is in 2NF if:
+It is already in 1NF
+All non-prime attributes are fully functionally dependent on the whole primary key (i.e., No Partial Dependency)
+
+✅ 2NF - Satisfied Example:
+StudentCourse Table:
+| StudentID | Course  | Grade |
+| --------- | ------- | ----- |
+| 1         | Math    | A     |
+| 1         | Science | B     |
+
+ Composite Key: (StudentID, Course) → Grade
+
+❌ 2NF - Violation Example:
+| StudentID | Course  | Name  | Grade |
+| --------- | ------- | ----- | ----- |
+| 1         | Math    | Alice | A     |
+| 1         | Science | Alice | B     |
+➡ Violation Reason: "Name" depends only on StudentID, not on full key (StudentID, Course) → Partial Dependency
+
+🔸 3rd Normal Form (3NF)
+📘 Definition:
+A table is in 3NF if:
+It is in 2NF
+There is no transitive dependency:
+
+Non-prime attribute → another non-prime attribute → primary key
+
+✅ 3NF - Satisfied Example:
+| StudentID | Name  | DeptID |
+| --------- | ----- | ------ |
+| 1         | Alice | D1     |
+
+| DeptID | DeptName |
+| ------ | -------- |
+| D1     | CS       |
+
+
+❌ 3NF - Violation Example:
+| StudentID | Name  | DeptName |
+| --------- | ----- | -------- |
+| 1         | Alice | CS       |
+| 2         | Bob   | ECE      |
+
+➡ Violation Reason: DeptName → depends on DeptID, which depends on StudentID → Transitive Dependency
+
+🔸 Boyce-Codd Normal Form (BCNF)
+📘 Definition:
+A table is in BCNF if:
+It is in 3NF
+For every non-trivial functional dependency X → Y, X is a super key
+Stronger than 3NF
+
+✅ BCNF - Satisfied Example:
+| StudentID | CourseID | Instructor |
+| --------- | -------- | ---------- |
+| 1         | C101     | Dr. Smith  |
+
+➡ Each StudentID-CourseID pair uniquely identifies Instructor
+
+❌ BCNF - Violation Example:
+| Course | Instructor | Room |
+| ------ | ---------- | ---- |
+| Math   | Dr. A      | 101  |
+| Math   | Dr. A      | 102  |
+
+➡ FD: Instructor → Course
+But Instructor is not a super key → BCNF violation
+
+
+
+Summary table:
+| Normal Form | Violation Condition                                     | Fix                              |
+| ----------- | ------------------------------------------------------- | -------------------------------- |
+| 1NF         | Multi-valued attributes                                 | Flatten into atomic values       |
+| 2NF         | Partial dependency on part of composite primary key     | Decompose to remove partial deps |
+| 3NF         | Transitive dependency                                   | Separate into new tables         |
+| BCNF        | Functional dependency where determinant is not superkey | Ensure all FDs have superkeys    |
+
+
+
+
+
+Denormalisation :
+Denormalization is the process of intentionally introducing redundancy into a database by combining tables that were separated during normalization. This is done to improve read performance and reduce the complexity of join operations.
+
+
+Reason:Reduces the number of joins needed, which speeds up data retrieval,Queries become easier to write and maintain due to fewer relationships.
+
+Indexing:
+Indexing is a technique to speed up data retrieval from a database table by creating a separate data structure (index) that allows faster search.
+
+
+| Feature     | Single-Level Index        | Multi-Level Index                       |
+| ----------- | ------------------------- | --------------------------------------- |
+| Structure   | One index file            | Hierarchical index files (like B-Trees) |
+| Efficiency  | Slower for large datasets | Faster for large datasets               |
+| Storage     | Less storage              | More storage due to multiple levels     |
+| Access Time | Linear or binary search   | Logarithmic search                      |
 
 
 
